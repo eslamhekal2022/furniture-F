@@ -43,6 +43,12 @@ export default function Navbar() {
       </ul>
 
       <div className="hidden md:flex gap-3">
+  <Link to={"/register"} >
+  <button className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition flex items-center gap-2">
+register
+  </button>
+</Link>
+
       <Link to={"/admin"}>
        <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
           Admin Panel
@@ -57,6 +63,7 @@ export default function Navbar() {
     <FaFacebook className="text-xl" />
     اطلب الآن
   </button>
+  
 </a>
 
 
@@ -96,6 +103,7 @@ export default function Navbar() {
     اطلب الآن
   </button>
 </a>
+
 
         </div>
       )}

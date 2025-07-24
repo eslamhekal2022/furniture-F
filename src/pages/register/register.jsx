@@ -75,7 +75,7 @@ export default function Register() {
         </form>
         <p className="text-center mt-4 text-gray-600">
           ليس لديك حساب؟{" "}
-          <Link to="/register" className="text-red-600 hover:underline">
+          <Link to="/login" className="text-red-600 hover:underline">
             سجل الآن
           </Link>
         </p>
