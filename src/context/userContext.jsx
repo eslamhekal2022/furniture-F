@@ -1,11 +1,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-
 const userContext = createContext();
 
 export const UserProvider = ({ children }) => {
-
 const [users, setUsers] = useState([])
 const [countUsers, setcountUsers] = useState(0)
 const [loading, setLoading] = useState(false)

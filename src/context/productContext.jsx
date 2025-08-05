@@ -6,7 +6,7 @@ const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
-    const [productCount, setproductCount] = useState([]);
+    const [productCounts, setproductCounts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [activeCategory, setActiveCategory] = useState("all");
   const [productCategory, setproductCategory] = useState([])
@@ -22,7 +22,7 @@ export const ProductProvider = ({ children }) => {
           setProducts(data.data);
           const uniqueCategories = [...new Set(data.data.map((p) => p.category))];
           setCategories(uniqueCategories);
-          setproductCount(data.count)
+          setproductCounts(data.count)
         }
   
       } catch (error) {
@@ -73,7 +73,7 @@ async function deleteProduct(id) {
   }, []);
 
   return (
-    <ProductContext.Provider value={{deleteProduct,getAllProducts,productCategory,products,categories,activeCategory,setActiveCategory,productCount}}>
+    <ProductContext.Provider value={{deleteProduct,getAllProducts,productCategory,products,categories,activeCategory,setActiveCategory,productCounts}}>
       {children}
     </ProductContext.Provider>
   );

@@ -1,9 +1,12 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
+import { useProduct } from '../../context/productContext.jsx';
+import { useUser } from '../../context/userContext.jsx';
 
 export default function Dashboard() {
-
+  const {productCounts}=useProduct()
+const {countUsers}=useUser()
   return (
     <main className="p-6 bg-[#f9f7f1] min-h-screen">
       <header className="mb-8">
@@ -23,14 +26,14 @@ export default function Dashboard() {
         <Link to="AllUser" className="no-underline">
           <div className="bg-white p-6 rounded-xl shadow-md text-center hover:bg-green-50 transition-all">
             <h3 className="text-xl font-semibold text-gray-800">Users</h3>
-            <p className="text-3xl text-green-600 font-bold">2</p>
+            <p className="text-3xl text-green-600 font-bold">{countUsers}</p>
           </div>
         </Link>
 
         <Link to="allProducts" className="no-underline">
           <div className="bg-white p-6 rounded-xl shadow-md text-center hover:bg-blue-50 transition-all">
             <h3 className="text-xl font-semibold text-gray-800">Products</h3>
-            <p className="text-3xl text-blue-600 font-bold">2</p>
+            <p className="text-3xl text-blue-600 font-bold">{productCounts}</p>
           </div>
         </Link>
       </section>

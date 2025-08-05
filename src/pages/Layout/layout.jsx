@@ -15,15 +15,16 @@ export default function Layout() {
     }
   }, [dispatch]);
 
-  return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
-      
-      <main className="flex-grow">
-        <Outlet />
-      </main>
-      
-      <Footer />
-    </div>
-  );
+ return (
+  <div className="flex flex-col min-h-screen w-full overflow-x-hidden">
+    <Navbar />
+    
+    <main className="flex-grow">
+      <Outlet />
+    </main>
+    
+    <Footer />
+  </div>
+);
+
 }

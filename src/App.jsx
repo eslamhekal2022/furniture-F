@@ -13,8 +13,10 @@ import Login from "./pages/login/login.jsx";
 import Register from "./pages/register/register.jsx";
 import AddItem from "./pages/addProduct/AddProduct.jsx";
 import { ProductProvider } from "./context/productContext.jsx";
+import { UserProvider } from "./context/userContext.jsx";
 import GetFilterCat from "./pages/GetFilterCat/GetFilterCat.jsx";
 import ProdutDet from "./pages/productDet/produtDet.jsx";
+import ProtectedRoute from "./pages/ProtecteRoute/ProtectRoute.jsx";
 
 
 
@@ -24,7 +26,7 @@ const routers = createBrowserRouter([
     path: "/",
     element: <Layout />, 
     children: [
-      { index: true, element: <Home /> },
+      { index: true, element:<ProtectedRoute><Home /></ProtectedRoute>  },
       { path: "/products", element: <Products /> },
       { path: "/ContactUs", element: <ContactUs /> },
       { path: "/register", element: <Register /> },
@@ -53,6 +55,7 @@ export default function App() {
   return (
     <Provider store={store}>
 <ProductProvider>
+<UserProvider>
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -68,7 +71,7 @@ export default function App() {
         bodyClassName="custom-toast-body"
       />
         <RouterProvider router={routers} />
-
+</UserProvider>
       </ProductProvider>   
     </Provider>
   );  

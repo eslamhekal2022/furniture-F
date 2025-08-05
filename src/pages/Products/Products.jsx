@@ -3,6 +3,7 @@ import { useProduct } from '../../context/productContext.jsx';
 import {Link} from 'react-router-dom';
 import { FaTrash, FaWhatsapp } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import WhatsAppButton from '../WhatsApp/WhatsApp.jsx';
 
 export default function Products() {
   const { products, deleteProduct } = useProduct();
@@ -64,18 +65,8 @@ export default function Products() {
             <p className="text-red-600 font-semibold mt-2">{x.price} ج.م</p>
           </Link>
 
-          {/* زر واتساب وهمي */}
-          <button
-            onClick={() => {
-              // هتحط هنا الوظيفة لاحقًا
-              // sendToWhatsApp(x)
-            }}
-            className="w-full mt-4 bg-green-600 hover:bg-green-700 text-white py-2 rounded-md flex items-center justify-center gap-2 transition"
-            title="تواصل عبر واتساب"
-          >
-            <FaWhatsapp className="text-white text-xl" />
-            اطلب عبر واتساب
-          </button>
+         
+            <WhatsAppButton product={x} />
         </div>
       ))}
     </div>

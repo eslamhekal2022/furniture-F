@@ -25,13 +25,7 @@ export default function Home() {
        
         </div>
 
-        <div className="mt-10 md:mt-0">
-          <img
-            src={logo}
-            alt="Furniture Hero"
-            className="w-[400px] max-w-full rounded-lg shadow-lg"
-          />
-        </div>
+      
       </section>
 
       {/* Categories */}
