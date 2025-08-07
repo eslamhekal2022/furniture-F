@@ -17,6 +17,7 @@ import { UserProvider } from "./context/userContext.jsx";
 import GetFilterCat from "./pages/GetFilterCat/GetFilterCat.jsx";
 import ProdutDet from "./pages/productDet/produtDet.jsx";
 import ProtectedRoute from "./pages/ProtecteRoute/ProtectRoute.jsx";
+import Allusers from "./pages/allusers/Allusers.jsx";
 
 
 
@@ -33,7 +34,9 @@ const routers = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/GetFilterCat/:category", element: <GetFilterCat /> },
       { path: "/productDet/:id", element: <ProdutDet /> },
-      
+      { path: "/allusers", element: <Allusers /> },
+         
+
         {
         path: "admin",
         element: <AdminPanel/>,

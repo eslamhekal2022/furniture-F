@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FaBars, FaTimes, FaFacebook, FaSignOutAlt, FaSignInAlt } from 'react-icons/fa';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import logo from "../../assets/ChatGPT Image Jul 20, 2025, 06_07_48 PM.png";
+                  import { CiUser } from "react-icons/ci";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,9 +16,10 @@ export default function Navbar() {
 
   const Links = [
     { path: "/", link: "Home" },
-    { path: "/products", link: "Products" },
+    { path: "/products", link: "Products"},
     { path: "/offers", link: "Offers" },
     { path: "/ContactUs", link: "Contact Us" },
+    { path: "/allusers", link: "Allusers" },
   ];
 
   return (
@@ -57,6 +59,7 @@ export default function Navbar() {
         <div className="hidden md:flex gap-3 items-center">
           {token ? (
             <>
+              
               <Link to="/admin">
                 <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
                   Admin Panel

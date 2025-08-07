@@ -12,11 +12,7 @@ const [refresh, setRefresh] = useState(false)
   async function getAllUser() {
     try {
       setLoading(true)
-      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/getUsers`,{
-        headers:{
-          token:localStorage.getItem("token")
-        }
-      });
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/getUsers`);
 
       if(data.success){
         setLoading(false)
