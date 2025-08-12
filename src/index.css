@@ -66,6 +66,17 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.swal-confirm-btn {
+  color: white !important; /* نص أبيض */
+  background-color: #d33 !important; /* خلفية حمراء */
+}
+
+.swal-cancel-btn {
+  color: white !important; /* نص أبيض */
+  background-color: #3085d6 !important; /* خلفية زرقاء */
+}
+
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

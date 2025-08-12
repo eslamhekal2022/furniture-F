@@ -40,3 +40,14 @@
 .read-the-docs {
   color: #888;
 }
+
+
+.swal-confirm-btn {
+  color: white !important;
+  background-color: #d33 !important;
+}
+
+.swal-cancel-btn {
+  color: white !important;
+  background-color: #3085d6 !important;
+}

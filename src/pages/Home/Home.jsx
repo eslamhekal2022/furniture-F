@@ -57,8 +57,7 @@ export default function Home() {
 
       {/* Final CTA */}
       <section className="py-12 text-center bg-red-600 text-white">
-        <h2 className="text-3xl font-bold mb-4">ابدأ تجربتك الآن</h2>
-        <p className="mb-6">انضم لآلاف العملاء اللي جددوا بيوتهم مع Eslam Home</p>
+        <h2 className="text-3xl font-bold mb-4 py-4">ابدأ تجربتك الآن</h2>
         <Link to="/contactUs" className="bg-white text-red-600 px-6 py-3 rounded-md font-semibold hover:bg-gray-100 transition">
           تواصل معنا
         </Link>

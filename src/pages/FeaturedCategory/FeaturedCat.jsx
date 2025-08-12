@@ -27,6 +27,7 @@ export default function CategoryProduct() {
                 <h3 className="text-xl font-semibold text-gray-700 group-hover:text-red-600 transition">{x.category}</h3>
               </div>
             </Link>
+          
           ))}
         </div>
       </div>
