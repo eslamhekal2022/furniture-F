@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import WhatsAppButton from '../WhatsApp/WhatsApp.jsx';
+import { useTranslation } from 'react-i18next';
 
 export default function GetFilterCat() {
   const [productData, setData] = useState([]);
   const { category } = useParams();
-
+const {i18n}=useTranslation()
+const lang=i18n.language
   async function getFilterCat() {
     try {
       const { data } = await axios.get(
@@ -41,15 +43,15 @@ export default function GetFilterCat() {
             <Link to={`/productDet/${item._id}`}>
               <img
                 src={`${import.meta.env.VITE_API_URL}${item.images[0]}`}
-                alt={item.name?.ar || item.name?.en}
+                alt={item.name[lang]}
                 className="w-full h-60 object-cover"
               />
               <div className="p-4">
                 <h3 className="text-xl font-semibold mb-2 text-gray-800">
-                  {item.name?.ar || item.name?.en}
+                  {item.name[lang]}
                 </h3>
                 <p className="text-gray-600 mb-2">
-                  {item.description?.ar || item.description?.en}
+                  {item.description[lang]}
                 </p>
                 <p className="text-red-600 font-bold text-lg">
                   السعر: {item.price} جنيه

@@ -21,7 +21,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow-x: hidden;
   
 }
 
@@ -74,6 +73,10 @@ button:focus-visible {
 .swal-cancel-btn {
   color: white !important; /* نص أبيض */
   background-color: #3085d6 !important; /* خلفية زرقاء */
+}
+
+.capitalize{
+  text-transform: capitalize;
 }
 
 

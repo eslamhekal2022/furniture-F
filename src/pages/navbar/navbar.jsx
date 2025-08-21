@@ -32,12 +32,32 @@ export default function Navbar() {
   };
 
   const Links = [
-    { path: "/", link: t("Home") },
-    { path: "/products", link: t("Products") },
-    { path: "/offers", link: t("Offers") },
-    { path: "/ContactUs", link: t("Contact Us") },
-    { path: "/allusers", link: t("Allusers") },
+    { path: "/", key: "home" },
+    { path: "/products", key: "products" },
+    { path: "/offers", key: "offers" },
+    { path: "/ContactUs", key: "contactUs" },
+    { path: "/allusers", key: "allUsers" },
   ];
+
+  // Component لإعادة استخدام اللينكات
+  const NavLinks = ({ onClick }) => (
+    <>
+      {Links.map((x, i) => (
+        <NavLink
+          key={i}
+          to={x.path}
+          className={({ isActive }) =>
+            isActive
+              ? 'text-red-500 border-b-2 border-red-500 pb-1 capitalize'
+              : 'hover:text-red-500 capitalize'
+          }
+          onClick={onClick}
+        >
+          {t(x.key)}
+        </NavLink>
+      ))}
+    </>
+  );
 
   return (
     <nav className="bg-[#f9f7f1] shadow-md w-full z-50">
@@ -72,21 +92,8 @@ export default function Navbar() {
 
         {/* Desktop Links */}
         {token && (
-          <ul className="hidden md:flex items-center gap-6 text-lg font-medium text-black">
-            {Links.map((x, i) => (
-              <li key={i}>
-                <NavLink
-                  to={x.path}
-                  className={({ isActive }) =>
-                    isActive
-                      ? 'text-red-500 border-b-2 border-red-500 pb-1 capitalize'
-                      : 'hover:text-red-500 capitalize'
-                  }
-                >
-                  {x.link}
-                </NavLink>
-              </li>
-            ))}
+          <ul className="hidden md:flex items-center gap-6 text-lg font-medium text-black list-none">
+            <NavLinks />
           </ul>
         )}
 
@@ -135,18 +142,7 @@ export default function Navbar() {
         <div className="md:hidden bg-black text-white flex flex-col items-center gap-4 py-4">
           {token ? (
             <>
-              {Links.map((x, i) => (
-                <NavLink
-                  key={i}
-                  to={x.path}
-                  className={({ isActive }) =>
-                    isActive ? 'text-red-500 capitalize' : 'hover:text-red-400 capitalize'
-                  }
-                  onClick={() => setIsOpen(false)}
-                >
-                  {x.link}
-                </NavLink>
-              ))}
+              <NavLinks onClick={() => setIsOpen(false)} />
               <Link to="/admin" onClick={() => setIsOpen(false)}>
                 <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                   {t("Admin Panel")}

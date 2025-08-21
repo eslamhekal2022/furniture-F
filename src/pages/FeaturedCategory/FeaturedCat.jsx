@@ -24,7 +24,7 @@ export default function CategoryProduct() {
                 className="w-full h-52 object-cover group-hover:scale-105 transition duration-300"
               />
               <div className="p-4 text-center">
-                <h3 className="text-xl font-semibold text-gray-700 group-hover:text-red-600 transition">{x.category}</h3>
+                <h3 className="text-xl font-semibold text-gray-700 group-hover:text-red-600 transition capitalize">{x.category}</h3>
               </div>
             </Link>
           

@@ -1,28 +1,20 @@
 {
   "welcome": "Welcome",
-  "Home1": "Discover the latest offers",
-  "Home2": "Shop now and get special discounts on our products!",
-  "FeatureCat": "Featured Categories",
-  "Testimonials": "Testimonials",
-  "name": "Name",
-  "shopNow":"Shop now",
-  "proccedCheckout":"Proceed to Checkout",
-  "category": "Category",
-  "desc": "Desc",
-  "price": "Price",
-  "add_product": "Add Product",
-  "addToCart": "🛒AddToCart ",
-  "addToWishlist": "addToWishlist",
-  "deleteProduct": "deleteProduct",
-  "NoProductFound": "No products available.",
-  "Review":"Review",
-  "addReview":"addReview",
-  "NoReview":"No reviews yet",
-  "ChooseRating":"Choose Rating",
-  "Edit":"Edit✏️",
-  "Delete":"Delete🗑️",
-  "Cancel":"Cancel",
-  "SendEdit":"Submit Review",
-  "writeReview":"Write your comment here.",
-  "Save-Edit":"Save-Edit"
+
+  "home":"home",
+
+  "products":"products",
+  "offers":"offers",
+  "contactUs":"contact Us",
+  "allUsers":"allUsers",
+  
+  "allproducts":"allProducts",
+  "MessageOnWhatsApp":"Message us on WhatsApp",
+  "MessageOnFaceBook":"Message us on Facebook",
+  "address":"Damietta, Egypt",
+  "heroTitle":"Furniture that matches your taste.",
+  "herodesc":"Discover our wide collection of modern, high-quality furniture to style your home with elegance.",
+  "orderNow":"Order now"
+
+
 }

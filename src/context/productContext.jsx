@@ -20,9 +20,10 @@ export const ProductProvider = ({ children }) => {
       
         if (data.success) {
           setProducts(data.data);
+          setproductCounts(data.count)
+          console.log(productCounts)
           const uniqueCategories = [...new Set(data.data.map((p) => p.category))];
           setCategories(uniqueCategories);
-          setproductCounts(data.count)
         }
   
       } catch (error) {

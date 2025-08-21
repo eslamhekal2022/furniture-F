@@ -88,7 +88,7 @@ const AddItem = () => {
           description_en: "",
           description_ar: "",
           price: "",
-          category: "tablet",
+          category: "salon",
           images: [],
           imagePreviews: [],
         });
