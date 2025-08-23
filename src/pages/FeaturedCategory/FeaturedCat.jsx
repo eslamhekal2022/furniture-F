@@ -1,6 +1,7 @@
 import React from 'react';
 import { useProduct } from '../../context/productContext';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function CategoryProduct() {
   const { productCategory } = useProduct();

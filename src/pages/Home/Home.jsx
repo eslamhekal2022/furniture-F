@@ -11,38 +11,14 @@ import { GiMaterialsScience } from 'react-icons/gi';
 import { BiSupport } from 'react-icons/bi';
 import CategoryProduct from "../FeaturedCategory/FeaturedCat";
 import { useTranslation } from "react-i18next";
+import HeroSec from "../HeroSec/HeroSec.jsx";
 export default function Home() {
   const {t}=useTranslation()
   return (
     <div className="bg-[#f9f7f1] text-gray-800">
 
 {/* Hero Section */}
-<section className="min-h-[70vh] flex flex-col md:flex-row items-center justify-between px-8 md:px-20 py-16">
-  <div className="max-w-xl space-y-6 text-center md:text-left">
-    <h1 className="text-4xl md:text-5xl font-bold leading-tight text-gray-900">
-    {t("heroTitle")}
-    </h1>
-    <p className="text-lg text-gray-600 py-2">
-    {t("herodesc")}
-    </p>
-    <Link to={"/products"}>
-    <button className="bg-red-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-red-700 transition capitalize">
-    {t("orderNow")}
-    </button>
-    </Link>
-    
-  </div>
-
-  {/* الصورة */}
-  <div className="mt-10 md:mt-0">
-    <img
-      src={salon} // اختار الصورة اللي شايفها مناسبة كبانر
-      alt="Furniture"
-      className="rounded-2xl shadow-lg max-w-sm md:max-w-md"
-    />
-  </div>
-</section>
-
+<HeroSec/>
       {/* Categories */}
        <CategoryProduct/>
 

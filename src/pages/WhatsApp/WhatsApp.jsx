@@ -6,10 +6,10 @@ import { FaWhatsapp } from 'react-icons/fa';
 export default function WhatsAppButton({ product }) {
   const { _id, name } = product;
 
-  const {i18n}=useTranslation()
+  const {t,i18n}=useTranslation()
   const lang=i18n.language
 const message = `مرحبًا، أنا مهتم بالمنتج  ${name[lang]}" أرجو إرسال التفاصيل الكاملة.\nرابط المنتج:\n${window.location.origin}/productDet/${_id}`;
-  const whatsappNumber = "201065624727"; 
+  const whatsappNumber = "201003127755"; 
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
   return (
     
@@ -22,7 +22,7 @@ const message = `مرحبًا، أنا مهتم بالمنتج  ${name[lang]}" �
     >
 
       <FaWhatsapp className="text-white text-xl" />
-      اطلب عبر واتساب
+      {t("orderwithWhatsUp")}
     </a>
   );
 }
