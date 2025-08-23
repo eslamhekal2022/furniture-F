@@ -5,11 +5,11 @@ import { useTranslation } from 'react-i18next';
 
 export default function CategoryProduct() {
   const { productCategory } = useProduct();
-
+const {t}=useTranslation()
   return (
     <section className="py-12 bg-[#f9f7f1]" dir="ltr">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-10 capitalize">featured categories</h2>
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-10 capitalize">{t("featured-categories")}</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {productCategory?.map((x) => (

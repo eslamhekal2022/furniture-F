@@ -9,7 +9,7 @@ export default function WhatsAppButton({ product }) {
   const {t,i18n}=useTranslation()
   const lang=i18n.language
 const message = `مرحبًا، أنا مهتم بالمنتج  ${name[lang]}" أرجو إرسال التفاصيل الكاملة.\nرابط المنتج:\n${window.location.origin}/productDet/${_id}`;
-  const whatsappNumber = "201003127755"; 
+  const whatsappNumber = "201065624727"; 
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
   return (
     

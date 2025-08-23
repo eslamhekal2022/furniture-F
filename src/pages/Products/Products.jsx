@@ -15,6 +15,21 @@ export default function Products() {
 
   const user = JSON.parse(localStorage.getItem("user") || "null");
 
+  // قاموس transliteration
+  const transliterations = {
+    "صالون": "salon",
+    "انتريه": "antrh",
+    "ركنه": "rokna",
+  };
+
+  // دالة تعرض التصنيف حسب اللغة
+  const getCategoryLabel = (cat) => {
+    if (lang === "ar" && transliterations[cat]) {
+      return transliterations[cat];
+    }
+    return cat;
+  };
+
   const deleteFire = async (id, iconn) => {
     const result = await Swal.fire({
       title: "Are you sure ?",
@@ -61,7 +76,7 @@ export default function Products() {
             className={`px-4 py-2 rounded-lg border capitalize 
               ${selectedCategory === cat ? "bg-blue-600 text-white" : "bg-white text-gray-600"}`}
           >
-            {cat}
+            {getCategoryLabel(cat)}
           </button>
         ))}
       </div>
