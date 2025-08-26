@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useRef } from "react";
 import { toast } from "react-toastify";
 import { useProduct } from "../../context/productContext.jsx";
+import { useTranslation } from 'react-i18next'
 
 const AddItem = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,7 @@ const AddItem = () => {
     images: [],
     imagePreviews: [],
   });
+  const {t}=useTranslation()
 
   const API = import.meta.env.VITE_API_URL;
   const { getAllProducts } = useProduct();
@@ -55,12 +57,12 @@ const AddItem = () => {
     e.preventDefault();
 
     if (!formData.name_en || !formData.name_ar || !formData.description_en || !formData.description_ar || !formData.price || !formData.category) {
-      toast.warning("يرجى ملء جميع الحقول المطلوبة");
+      toast.warning(t("required-fields"));
       return;
     }
 
     if (formData.images.length === 0) {
-      toast.warning("يرجى رفع صورة واحدة على الأقل");
+      toast.warning(t("upload-one-image"));
       return;
     }
 
@@ -81,7 +83,7 @@ const AddItem = () => {
 
 
       if (data.success) {
-        toast.success("تمت إضافة المنتج بنجاح");
+        toast.success(t("product-added"));
         setFormData({
           name_en: "",
           name_ar: "",
@@ -104,7 +106,7 @@ const AddItem = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-md">
-      <h2 className="text-2xl font-bold mb-4 text-center">إضافة منتج جديد</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center">{t("add-new-product")}</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           name="name_en"
@@ -164,7 +166,7 @@ const AddItem = () => {
           onClick={() => fileInputRef.current.click()}
           className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
         >
-          📸 تحميل الصور
+{t("upload-images")}
         </button>
 
         <input
@@ -200,7 +202,7 @@ const AddItem = () => {
           type="submit"
           className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700"
         >
-          إضافة المنتج
+{t("add-product")}
         </button>
       </form>
     </div>

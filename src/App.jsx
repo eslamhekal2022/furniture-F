@@ -21,6 +21,7 @@ import Allusers from "./pages/allusers/Allusers.jsx";
 import UpdateRole from "./pages/updateRole/updateRole.jsx";
 
 import './i18n.js';
+import ScrollToTop from "./pages/ScrollTop/ScrollTop.jsx";
 
 
 
@@ -62,6 +63,7 @@ export default function App() {
   return (
     <Provider store={store}>
 <ProductProvider>
+
 <UserProvider>
       <ToastContainer
         position="top-right"

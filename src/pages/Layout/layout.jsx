@@ -4,6 +4,7 @@ import Navbar from '../navbar/navbar.jsx'
 import { useDispatch } from 'react-redux';
 import { setUserRedux } from '../../Redux/user.js';
 import Footer from '../Footer/Footer.jsx';
+import ScrollToTop from '../ScrollTop/ScrollTop.jsx';
 
 export default function Layout() {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ export default function Layout() {
  return (
   <div className="flex flex-col min-h-screen w-full overflow-x-hidden">
     <Navbar />
+        <ScrollToTop/>
     
     <main className="flex-grow">
       <Outlet />

@@ -20,8 +20,8 @@ export default function HeroSec() {
 
   return (
     <div className="min-h-[70vh] flex flex-col md:flex-row items-center justify-between px-8 md:px-20 py-16">
-      <div className="max-w-xl space-y-6 text-center md:text-left">
-        <h1 className="text-4xl md:text-5xl font-bold leading-tight text-gray-900">
+      <div className="max-w-xl space-y-6 text-center md:text-left ">
+        <h1 className="text-4xl md:text-5xl font-bold leading-[3 text-gray-900 capitalize">
           {t("heroTitle")}
         </h1>
         <p className="text-lg text-gray-600 py-2">{t("herodesc")}</p>

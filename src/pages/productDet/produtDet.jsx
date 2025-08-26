@@ -20,7 +20,6 @@ export default function ProductDet() {
       const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/productDet/${id}`);
       if (data.success) {
         setProduct(data.data);
-        toast.success("تم تحميل بيانات المنتج");
         setCurrentIndex(0);
       } else {
         toast.warning("لم يتم العثور على المنتج");
@@ -167,7 +166,6 @@ useEffect(() => {
 >
   ›
 </button>
-
         </div>
       )}
     </div>

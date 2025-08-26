@@ -1,19 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { FaBars, FaTimes, FaFacebook, FaSignOutAlt, FaSignInAlt } from 'react-icons/fa';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import React, { useEffect, useState } from "react";
+import { FaBars, FaTimes, FaFacebook, FaSignOutAlt, FaSignInAlt, FaArrowLeft } from "react-icons/fa";
+import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import logo from "../../assets/ChatGPT Image Jul 20, 2025, 06_07_48 PM.png";
 import egypt from "/flags/Flag_of_Egypt.png";
 import UNS from "/flags/Flag_of_the_United_States.png";
+import { useSelector } from "react-redux";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
+  const location = useLocation();
   const { i18n, t } = useTranslation();
   const [selectedLang, setSelectedLang] = useState(i18n.language);
 
   const flags = { en: UNS, ar: egypt };
+  const user = useSelector((x) => x.user.user);
 
   useEffect(() => {
     setSelectedLang(i18n.language);
@@ -34,12 +37,10 @@ export default function Navbar() {
   const Links = [
     { path: "/", key: "home" },
     { path: "/products", key: "products" },
-    { path: "/offers", key: "offers" },
     { path: "/ContactUs", key: "contactUs" },
-    { path: "/allusers", key: "allUsers" },
+    ...(user?.role === "admin" ? [{ path: "/allusers", key: "allUsers" }] : []),
   ];
 
-  // Component لإعادة استخدام اللينكات
   const NavLinks = ({ onClick }) => (
     <>
       {Links.map((x, i) => (
@@ -48,8 +49,8 @@ export default function Navbar() {
           to={x.path}
           className={({ isActive }) =>
             isActive
-              ? 'text-red-500 border-b-2 border-red-500 pb-1 capitalize'
-              : 'hover:text-red-500 capitalize'
+              ? "text-red-500 border-b-2 border-red-500 pb-1 capitalize"
+              : "hover:text-red-500 capitalize"
           }
           onClick={onClick}
         >
@@ -60,127 +61,132 @@ export default function Navbar() {
   );
 
   return (
-    <nav className="bg-[#f9f7f1] shadow-md w-full z-50">
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-
-        {/* Language Switcher */}
-        <div className="flex items-center gap-2">
-          <img className="w-6 h-4 object-cover" src={flags[selectedLang]} alt="flag" />
-          <select
-            className="border rounded px-1 py-0.5 text-sm"
-            value={selectedLang}
-            onChange={changeLanguage}
-            aria-label={t("change_language")}
-          >
-            <option value="en">English</option>
-            <option value="ar">العربية</option>
-          </select>
-        </div>
-
-        {/* Logo */}
-        <Link to="/">
-          <img src={logo} alt="logo" className="w-20 h-20 rounded-full" />
-        </Link>
-
-        {/* Hamburger Icon (Mobile) */}
-        <div
-          className="md:hidden text-2xl cursor-pointer text-black"
-          onClick={() => setIsOpen(!isOpen)}
+  <nav className=" w-full bg-[#fdfdfb]/95 backdrop-blur-md shadow-sm z-50">
+  <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+    
+    {/* Left side (Back button + Logo) */}
+    <div className="flex items-center gap-3">
+      {/* Back button */}
+      {location.pathname !== "/" && (
+        <button
+          onClick={() => navigate(-1)}
+          className="p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition "
+          title={t("Back")}
         >
-          {isOpen ? <FaTimes /> : <FaBars />}
-        </div>
+          <FaArrowLeft className="text-gray-700 text-lg" />
+        </button>
+      )}
 
-        {/* Desktop Links */}
-        {token && (
-          <ul className="hidden md:flex items-center gap-6 text-lg font-medium text-black list-none">
-            <NavLinks />
-          </ul>
-        )}
+      {/* Logo */}
+      <Link to="/" className="flex items-center gap-2">
+        <img src={logo} alt="logo" className="w-10 h-10 rounded-full border" />
+        <span className="hidden sm:block text-lg font-bold text-gray-800">
+          Eslam Home
+        </span>
+      </Link>
+    </div>
 
-        {/* Desktop Buttons */}
-        <div className="hidden md:flex gap-3 items-center">
-          {token ? (
-            <>
-              <Link to="/admin">
-                <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
-                  {t("Admin Panel")}
-                </button>
-              </Link>
-              <a
-                href="https://www.facebook.com/profile.php?id=61578340717800"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <button className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 flex items-center gap-2">
-                  <FaFacebook className="text-xl" />
-                  {t("اطلب الآن")}
-                </button>
-              </a>
-              <button
-                onClick={handleLogout}
-                className="p-2 bg-red-600 rounded-full hover:bg-red-700 transition"
-                title={t("Logout")}
-              >
-                <FaSignOutAlt className="text-white text-xl" />
-              </button>
-            </>
-          ) : (
-            <Link to="/login">
-              <div
-                className="p-2 bg-green-600 rounded-full hover:bg-green-700 transition cursor-pointer"
-                title={t("Login")}
-              >
-                <FaSignInAlt className="text-white text-xl" />
-              </div>
-            </Link>
-          )}
-        </div>
+    {/* Middle links (desktop only) */}
+    {token && (
+      <ul className="hidden md:flex gap-6 text-gray-700 font-medium">
+        <NavLinks />
+      </ul>
+    )}
+
+    {/* Right side */}
+    <div className="flex items-center gap-3">
+      {/* Order Now button (always visible) */}
+      <a
+        href="https://www.facebook.com/profile.php?id=61578340717800"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <button className="bg-red-600 text-white px-3 sm:px-5 py-2 rounded-lg hover:bg-red-700 transition font-medium shadow text-sm sm:text-base">
+          {t("اطلب الآن")}
+        </button>
+      </a>
+
+      {/* Language Switcher (desktop only) */}
+      <div className="flex items-center gap-2">
+  <img className="w-5 h-3 object-cover" src={flags[selectedLang]} alt="flag" />
+  <select
+    className="border rounded px-2 py-1 text-sm bg-white"
+    value={selectedLang}
+    onChange={changeLanguage}
+  >
+    <option value="en">EN</option>
+    <option value="ar">AR</option>
+  </select>
+</div>
+
+      {/* Login / Logout */}
+      {token ? (
+        <button
+          onClick={handleLogout}
+          className="hidden md:block p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition"
+          title={t("Logout")}
+        >
+          <FaSignOutAlt className="text-gray-700 text-lg" />
+        </button>
+      ) : (
+        <Link to="/login">
+          <div
+            className="hidden md:block p-2 bg-green-600 rounded-full hover:bg-green-700 transition cursor-pointer"
+            title={t("Login")}
+          >
+            <FaSignInAlt className="text-white text-lg" />
+          </div>
+        </Link>
+      )}
+
+      {/* Mobile Hamburger */}
+      <div
+        className="md:hidden text-2xl cursor-pointer text-gray-700"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {isOpen ? <FaTimes /> : <FaBars />}
+      </div>
+    </div>
+  </div>
+
+  {/* Mobile Menu */}
+  {isOpen && (
+    <div className="md:hidden bg-white border-t shadow flex flex-col items-center gap-4 py-4">
+      {token && <NavLinks onClick={() => setIsOpen(false)} />}
+      
+      {/* Language Switcher in mobile */}
+      <div className="flex items-center gap-2">
+        <img className="w-5 h-3 object-cover" src={flags[selectedLang]} alt="flag" />
+        <select
+          className="border rounded px-2 py-1 text-sm"
+          value={selectedLang}
+          onChange={changeLanguage}
+        >
+          <option value="en">EN</option>
+          <option value="ar">AR</option>
+        </select>
       </div>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-black text-white flex flex-col items-center gap-4 py-4">
-          {token ? (
-            <>
-              <NavLinks onClick={() => setIsOpen(false)} />
-              <Link to="/admin" onClick={() => setIsOpen(false)}>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                  {t("Admin Panel")}
-                </button>
-              </Link>
-              <a
-                href="https://www.facebook.com/profile.php?id=61578340717800"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <button className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 flex items-center gap-2">
-                  <FaFacebook className="text-xl" />
-                  {t("اطلب الآن")}
-                </button>
-              </a>
-              <button
-                onClick={() => {
-                  handleLogout();
-                  setIsOpen(false);
-                }}
-                className="p-2 bg-red-600 rounded-full hover:bg-red-700"
-                title={t("Logout")}
-              >
-                <FaSignOutAlt className="text-white text-xl" />
-              </button>
-            </>
-          ) : (
-            <Link to="/login" onClick={() => setIsOpen(false)}>
-              <div
-                className="p-2 bg-green-600 rounded-full hover:bg-green-700 transition cursor-pointer"
-                title={t("Login")}
-              >
-                <FaSignInAlt className="text-white text-xl" />
-              </div>
-            </Link>
-          )}
-        </div>
+      {token ? (
+        <button
+          onClick={() => {
+            handleLogout();
+            setIsOpen(false);
+          }}
+          className="p-2 bg-red-600 rounded-full hover:bg-red-700 text-white flex items-center gap-2"
+        >
+          <FaSignOutAlt /> {t("Logout")}
+        </button>
+      ) : (
+        <Link to="/login" onClick={() => setIsOpen(false)}>
+          <div className="p-2 bg-green-600 rounded-full hover:bg-green-700 transition text-white flex items-center gap-2">
+            <FaSignInAlt /> {t("Login")}
+          </div>
+        </Link>
       )}
-    </nav>
+    </div>
+  )}
+</nav>
+
   );
 }
