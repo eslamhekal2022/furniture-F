@@ -21,7 +21,6 @@ import Allusers from "./pages/allusers/Allusers.jsx";
 import UpdateRole from "./pages/updateRole/updateRole.jsx";
 
 import './i18n.js';
-import ScrollToTop from "./pages/ScrollTop/ScrollTop.jsx";
 
 
 
@@ -31,7 +30,7 @@ const routers = createBrowserRouter([
     path: "/",
     element: <Layout />, 
     children: [
-      { index: true, element:<ProtectedRoute><Home /></ProtectedRoute>  },
+      { index: true, element:<Home />},
       { path: "/products", element: <Products /> },
       { path: "/ContactUs", element: <ContactUs /> },
       { path: "/register", element: <Register /> },

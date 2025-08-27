@@ -30,11 +30,9 @@
         "product-added": "Product added successfully",
           "add-new-product": "Add New Product",
             "upload-images": "📸 Upload Images",
-              "add-product": "Add Product"
-
-
-
-
-
-
+              "add-product": "Add Product",
+  "admin-panel": "Admin Panel",
+  "From":"from",
+  "to":"to",
+  "no-products-in-range": "No products found in this price range"
 }

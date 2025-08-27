@@ -87,12 +87,20 @@ export default function Navbar() {
     </div>
 
     {/* Middle links (desktop only) */}
-    {token && (
-      <ul className="hidden md:flex gap-6 text-gray-700 font-medium">
-        <NavLinks />
-      </ul>
-    )}
+     <ul className="hidden md:flex gap-6 text-gray-700 font-medium items-center">
+    <NavLinks />
 
+    {user?.role === "admin" && (
+      <Link
+        to="/admin"
+        className="flex items-center gap-2 bg-yellow-500 text-white px-4 py-2 rounded-lg 
+                   hover:bg-yellow-600 transition font-medium shadow text-sm"
+      >
+        ⚙️ {t("Admin Panel")}
+      </Link>
+    )}
+  </ul>
+)
     {/* Right side */}
     <div className="flex items-center gap-3">
       {/* Order Now button (always visible) */}
@@ -152,7 +160,7 @@ export default function Navbar() {
   {/* Mobile Menu */}
   {isOpen && (
     <div className="md:hidden bg-white border-t shadow flex flex-col items-center gap-4 py-4">
-      {token && <NavLinks onClick={() => setIsOpen(false)} />}
+      { <NavLinks onClick={() => setIsOpen(false)} />}
       
       {/* Language Switcher in mobile */}
       <div className="flex items-center gap-2">
@@ -165,25 +173,29 @@ export default function Navbar() {
           <option value="en">EN</option>
           <option value="ar">AR</option>
         </select>
+        
       </div>
+   {user?.role === "admin" && (
+<Link
+  to="/admin"
+  onClick={() => setIsOpen(false)}
+  className="flex items-center gap-2 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition font-medium shadow text-sm"
+>
+  <span className="inline-block transition-transform duration-500 hover:rotate-180">
+    ⚙️
+  </span>
+  {t("admin-panel")}
+</Link>
 
-      {token ? (
-        <button
-          onClick={() => {
-            handleLogout();
-            setIsOpen(false);
-          }}
-          className="p-2 bg-red-600 rounded-full hover:bg-red-700 text-white flex items-center gap-2"
-        >
-          <FaSignOutAlt /> {t("Logout")}
-        </button>
-      ) : (
+)}
+
+     
         <Link to="/login" onClick={() => setIsOpen(false)}>
           <div className="p-2 bg-green-600 rounded-full hover:bg-green-700 transition text-white flex items-center gap-2">
             <FaSignInAlt /> {t("Login")}
           </div>
         </Link>
-      )}
+      
     </div>
   )}
 </nav>
